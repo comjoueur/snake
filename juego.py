@@ -13,6 +13,7 @@ class serpiente:
     par=[0,2]
     posicion.append(par)
     puntaje=0
+    antecesor=[0,0]
 def avanzar(a):
     g=a.posicion
     l=[1,2]
@@ -33,6 +34,7 @@ def avanzar(a):
         l[0]=g[len(g)-1][0]+1
         l[1]=g[len(g)-1][1]
         a.posicion.append(l)
+    a.antecesor=a.posicion[0]
     a.posicion.pop(0);
 
 def mov_iz(a):
@@ -64,7 +66,7 @@ def aparecer_fruta(a,espacio,manzana):
     manzana.x=x
     manzana.y=y
 def crecer(a):
-    a.posicion.insert(0,a.posicion[0])
+    a.posicion.insert(0,a.antecesor)
 def comer_fruta(a,espacio,manzana):
     a.puntaje+=10
     aparecer_fruta(a,espacio,manzana)
@@ -76,12 +78,15 @@ def ganar(a):
     if(a.puntaje>=100):
         system("clear")
         print "tu ganaste"
+        return True
+    return False
 def perder(a,espacio):
     i=a.posicion[len(a.posicion)-1][0]
     j=a.posicion[len(a.posicion)-1][1]
     if(i<0 or i>=espacio.x or j<0 or j>=espacio.y):
         system("clear")
         print "perdiste"
+        return True
     else:
         bool w=False
         for i in range(len(a.posicion)-1)
@@ -89,8 +94,9 @@ def perder(a,espacio):
         if(w):
             system("clear")
             print "perdiste"
+            return True
+    return False
         
 def estado(a,espacio,manzana):
     p_comiofruta(a,espacio,manzana)
-    ganar(a)
-    perder(a,espacio)
+    return ganar(a) or perder(a,espacio)
