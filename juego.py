@@ -54,20 +54,17 @@ def limite(a,space):
     t=len(a.posicion)-1
     o=a.posicion
     return condicion(o[t][0],space.y) or condicion(o[t][1],space.x) 
-def pedir_tecla(a,space,b,manzana):
+def pedir_tecla(a,space,manzana):
     x=True
     print space.x,space.y
-    dibujar(a,space,manzana)
     r=[1,2]
     r=a.posicion[0]
-    if b=="a":mov_iz(a)
-    elif b=="w":mov_ar(a)
-    elif b=="s":mov_ab(a)
-    elif b=="d":mov_de(a)
+    avanzar(a)
     for i in range(len(a.posicion)-1):
         if(a.posicion[i]==a.posicion[len(a.posicion)-1]):x=False
     p_comiofruta(a,space,manzana,r)
     x=x and not limite(a,space)
+    if x :dibujar(a,space,manzana)
     return x
 class fruta:
     x=0
