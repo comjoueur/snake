@@ -28,7 +28,7 @@ def task():
         system("clear")
         print "You Lose"
         return 0
-    root.after(10,task)
+    root.after(1,task)
 cont=5
 system("clear")
 while(cont>0):
@@ -53,5 +53,5 @@ root.bind('<Left>',sacar1)
 root.bind('<Right>',sacar2)
 root.bind('<Up>',sacar3)
 root.bind('<Down>',sacar4)
-root.after(10,task)
+root.after(1,task)
 root.mainloop()

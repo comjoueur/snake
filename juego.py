@@ -49,7 +49,8 @@ def limite(a,space):
         return 3
     return 0
 def ganar(a,space,manzana,dif):
-    if a.puntaje>=100 and a.nivel==1:
+    if a.puntaje>=50 and a.nivel==1:
+        dibujar(a,space,manzana,dif)
         u=[[space.x/2,0],[space.x/2,1],[space.x/2,2]]
         a.posicion=u
         system("clear")
@@ -62,9 +63,20 @@ def ganar(a,space,manzana,dif):
         a.direccion="derecha"
         a.nivel=2
         return True
-    elif a.puntaje>=200 and a.nivel==2:
+    elif a.puntaje>=60 and a.nivel==2:
+        dibujar(a,space,manzana,dif)
         u=[[space.x/2,0],[space.x/2,1],[space.x/2,2]]
         dif.posicion=[[space.y-4,space.x-4],[space.y-5,space.x-4],[space.y-4,space.x-5],[space.y-4,3],[space.y-5,3],[space.y-4,4],[3,3],[4,3],[3,4],[3,space.x-4],[3,space.x-5],[4,space.x-4]]
+        for i in range((space.x/4)):
+            dif.posicion.append([0,i])
+            dif.posicion.append([0,space.x-i-1])
+            dif.posicion.append([space.y-1,i])
+            dif.posicion.append([space.y-1,space.x-i-1])
+        for i in range(1,(space.x)/4):
+            dif.posicion.append([i,0])
+            dif.posicion.append([space.y-i-1,0])
+            dif.posicion.append([i,space.x-1])
+            dif.posicion.append([space.y-i-1,space.x-1])
         a.posicion=u
         system("clear")
         x=5
@@ -76,7 +88,7 @@ def ganar(a,space,manzana,dif):
         a.direccion="derecha"
         a.nivel=3
         return True
-    elif a.puntaje>=300 and a.nivel==3:
+    elif a.puntaje>=70 and a.nivel==3:
         system("clear")
         print "usted ha ganado el juego con",a.puntaje,"puntos"
         a.estado="ganar"
@@ -87,14 +99,14 @@ def movimiento(a,space,manzana,dif):
     r=[1,2]
     r=a.posicion[0]
     avanzar(a)
-    for i in range(len(a.posicion)-1):
+    for i in range(len(a.p):
         if(a.posicion[i]==a.posicion[len(a.posicion)-1]):x=False
     if ganar(a,space,manzana,dif):return True
     if a.nivel==3:
         for i in dif.posicion:
             if i==a.posicion[len(a.posicion)-1]:x=False
     z=limite(a,space)
-    if a.nivel>=2:
+    if a.nivel==2:
         if z!=0:
             x=False
     else:
@@ -144,11 +156,12 @@ def p_comiofruta(a,space,manzana,r,dif):
     return False
 def dibujar(a,space,manzana,dif):
     system("clear")
-    print "puntaje:",a.puntaje
+    print "puntaje:",a.puntaje,"          ","nivel",a.nivel
     l=[]
     u=[]
     for i in range(space.x+2):
-        print '.',
+        if(a.nivel==2):print "X",
+        else :print '.',
     print ""
     for i in range(space.y):
         for i in range(space.x):
@@ -156,15 +169,18 @@ def dibujar(a,space,manzana,dif):
         l.append(u)
         u=[]
     for i in range(len(dif.posicion)):
-        l[dif.posicion[i][0]][dif.posicion[i][1]]="0"
+        l[dif.posicion[i][0]][dif.posicion[i][1]]="X"
     for i in range(len(a.posicion)):
         l[a.posicion[i][0]][a.posicion[i][1]]="o"
     l[manzana.x][manzana.y]="*"
     for i in range(len(l)):
-        print'.',
+        if(a.nivel==2):print"X",
+        else:print'.',
         for j in range(len(l[i])):
             print l[i][j],
-        print '.'
+        if(a.nivel==2):print "X"
+        else:print '.'
     for i in range(space.x+2):
-        print '.',
+        if(a.nivel==2):print 'X',
+        else:print '.',
     print ""
