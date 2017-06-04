@@ -22,25 +22,36 @@ def task():
     global serp
     global space
     global pera
-    if movimiento(serp,space,pera)==-1:
+    global dif
+    if serp.estado=="ganar":return 0
+    if movimiento(serp,space,pera,dif)==False:
         system("clear")
         print "You Lose"
         return 0
-    root.after(30,task)
-serp=serpiente()
+    root.after(15,task)
+cont=5
+system("clear")
+while(cont>0):
+    print "el juego comienza en...",cont
+    sleep(1)
+    system("clear")
+    cont-=1
 space=espacio()
+space.x=20
+space.y=20
+serp=serpiente()
+serp.posicion=[[space.x/2,0],[space.x/2,1],[space.x/2,2]]
 pera=fruta()
+dif=obstaculos()
 y=0
-space.x=15
-space.y=15
 if y==0:
     y+=1
-    aparecer_fruta(serp,space,pera)
-    dibujar(serp,space,pera)
+    aparecer_fruta(serp,space,pera,dif)
+    dibujar(serp,space,pera,dif)
 root=Tk()
 root.bind('<Left>',sacar1)
 root.bind('<Right>',sacar2)
 root.bind('<Up>',sacar3)
 root.bind('<Down>',sacar4)
-root.after(30,task)
+root.after(15,task)
 root.mainloop()
