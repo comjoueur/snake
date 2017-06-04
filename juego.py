@@ -78,7 +78,7 @@ def ganar(a,space,manzana,dif):
         return True
     elif a.puntaje>=300 and a.nivel==3:
         system("clear")
-        print "usted ha ganado el juego"
+        print "usted ha ganado el juego con",a.puntaje,"puntos"
         a.estado="ganar"
         return True
     return False
@@ -144,20 +144,27 @@ def p_comiofruta(a,space,manzana,r,dif):
     return False
 def dibujar(a,space,manzana,dif):
     system("clear")
-    print a.puntaje
+    print "puntaje:",a.puntaje
     l=[]
     u=[]
+    for i in range(space.x+2):
+        print '.',
+    print ""
     for i in range(space.y):
         for i in range(space.x):
-            u.append('.')
+            u.append(' ')
         l.append(u)
         u=[]
     for i in range(len(dif.posicion)):
-        l[dif.posicion[i][0]][dif.posicion[i][1]]="p"
+        l[dif.posicion[i][0]][dif.posicion[i][1]]="0"
     for i in range(len(a.posicion)):
-        l[a.posicion[i][0]][a.posicion[i][1]]="*"
-    l[manzana.x][manzana.y]="o"
+        l[a.posicion[i][0]][a.posicion[i][1]]="o"
+    l[manzana.x][manzana.y]="*"
     for i in range(len(l)):
+        print'.',
         for j in range(len(l[i])):
             print l[i][j],
-        print ""
+        print '.'
+    for i in range(space.x+2):
+        print '.',
+    print ""
