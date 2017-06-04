@@ -49,7 +49,7 @@ def limite(a,space):
         return 3
     return 0
 def ganar(a,space,manzana,dif):
-    if a.puntaje>=50 and a.nivel==1:
+    if a.puntaje>=100 and a.nivel==1:
         u=[[space.x/2,0],[space.x/2,1],[space.x/2,2]]
         a.posicion=u
         system("clear")
@@ -62,9 +62,9 @@ def ganar(a,space,manzana,dif):
         a.direccion="derecha"
         a.nivel=2
         return True
-    elif a.puntaje>=100 and a.nivel==2:
+    elif a.puntaje>=200 and a.nivel==2:
         u=[[space.x/2,0],[space.x/2,1],[space.x/2,2]]
-        dif.posicion=[[space.y-4,space.x-4],[space.y-5,space.x-4],[space.y-4,space.x-5],[space.y-4,3],[space.y-5,3],[space.y-4,4]]
+        dif.posicion=[[space.y-4,space.x-4],[space.y-5,space.x-4],[space.y-4,space.x-5],[space.y-4,3],[space.y-5,3],[space.y-4,4],[3,3],[4,3],[3,4],[3,space.x-4],[3,space.x-5],[4,space.x-4]]
         a.posicion=u
         system("clear")
         x=5
@@ -76,7 +76,7 @@ def ganar(a,space,manzana,dif):
         a.direccion="derecha"
         a.nivel=3
         return True
-    elif a.puntaje>=150 and a.nivel==3:
+    elif a.puntaje>=300 and a.nivel==3:
         system("clear")
         print "usted ha ganado el juego"
         a.estado="ganar"

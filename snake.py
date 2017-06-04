@@ -37,8 +37,8 @@ while(cont>0):
     system("clear")
     cont-=1
 space=espacio()
-space.x=20
-space.y=20
+space.x=15
+space.y=15
 serp=serpiente()
 serp.posicion=[[space.x/2,0],[space.x/2,1],[space.x/2,2]]
 pera=fruta()
